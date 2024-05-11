@@ -15,3 +15,5 @@ import logging
 """
 
 parser = argparse.ArgumentParser(description="Sorting folder")
+parser.add_argument("--source", "-s", help="Source folder", required=True)
+parser.add_argument("--output", "-o", help="Source folder", default="dist")
