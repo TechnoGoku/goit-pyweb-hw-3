@@ -37,7 +37,7 @@ def grabs_folder(path: Path):
 def copy_file(path: Path):
     for el in path.iterdir():
         if el.is_file():
-            ext = el.suffix[:1]
+            ext = el.suffix[1:]
             ext_folder = output / ext
             try:
                 ext_folder.mkdir(exist_ok=True, parents=True)
