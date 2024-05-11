@@ -16,7 +16,7 @@ import logging
 
 parser = argparse.ArgumentParser(description="Sorting folder")
 parser.add_argument("--source", "-s", help="Source folder", required=True)
-parser.add_argument("--output", "-o", help="Source folder", default="dist")
+parser.add_argument("--output", "-o", help="Output folder", default="dist")
 
 
 print(parser.parse_args())
@@ -29,7 +29,7 @@ output = Path(args.get("output"))
 folders = []
 
 def grabs_folder(path: Path):
-    for el in path in path.iterdir():
+    for el in path.iterdir():
         if el.is_dir():
             folders.append(el)
             grabs_folder(el) 
@@ -56,8 +56,8 @@ if __name__ == "__main__":
     threads = []
     for folder in folders:
         th = Thread(target=copy_file, args=(folder,))
-        th.start
+        th.start()
         threads.append(th)
 
-        [th.join() for th in threads] 
+        [th.join for th in threads] 
         print(f"Можна видаляти {source}") 
