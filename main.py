@@ -59,5 +59,5 @@ if __name__ == "__main__":
         th.start()
         threads.append(th)
 
-        [th.join for th in threads] 
-        print(f"Можна видаляти {source}") 
+    [th.join for th in threads] 
+    print(f"Можна видаляти {source}") 
