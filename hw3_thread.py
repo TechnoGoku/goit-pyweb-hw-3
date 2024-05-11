@@ -51,3 +51,13 @@ if __name__ == "__main__":
 
     folders.append(source)
     grabs_folder(source) 
+    print(folders)
+
+    threads = []
+    for folder in folders:
+        th = Thread(target=copy_file, args=(folder,))
+        th.start
+        threads.append(th)
+
+        [th.join() for th in threads] 
+        print(f"Можна видаляти {source}") 
