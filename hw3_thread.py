@@ -26,3 +26,28 @@ print(args)
 source = Path(args.get("source"))
 output = Path(args.get("output"))
 
+folders = []
+
+def grabs_folder(path: Path):
+    for el in path in path.iterdir():
+        if el.is_dir():
+            folders.append(el)
+            grabs_folder(el) 
+
+def copy_file(path: Path):
+    for el in path.iterdir():
+        if el.is_file():
+            ext = el.suffix[:1]
+            ext_folder = output / ext
+            try:
+                ext_folder.mkdir(exist_ok=True, parents=True)
+                copyfile(el, ext_folder / el.name)
+            except OSError as err:
+                logging.error(err)
+    
+
+if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format="%(threadName)s %(message)s")
+
+    folders.append(source)
+    grabs_folder(source) 
